@@ -9,12 +9,13 @@ import unittest
 class Test(unittest.TestCase):
 	def testName(self):
 		driver = webdriver.Chrome(ChromeDriverManager().install())
-		driver.implicitly_wait(10)
+		#driver.implicitly_wait(10)
 		driver.get("https://tranquil-crag-81243.herokuapp.com/")
 		driver.maximize_window()
 		msg=driver.find_element(By.TAG_NAME , "body")
 		try:
-			WebDriverWait(driver, timeout=3).until(EC.title_contains('SeleniumHQ Browser Automation'))
+			pass
+			#WebDriverWait(driver, timeout=3).until(EC.title_contains('SeleniumHQ Browser Automation'))
 			#WebDriverWait(driver, timeout=3).until(EC.)
 		except Exception as e: 
 			print (e)
