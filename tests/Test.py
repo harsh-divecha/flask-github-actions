@@ -23,7 +23,8 @@ class Test(unittest.TestCase):
 		print(msg.text)
 		#breakpoint()
 		self.assertEqual("Hello, Vaibhav!", msg.text, "webpage title is not matching")
+		driver.quit()
 if __name__ == "__main__":
 	print('inside Main')
 	unittest.main()
-	driver.quit()
+	#driver.quit()
