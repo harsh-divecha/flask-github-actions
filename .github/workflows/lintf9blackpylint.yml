@@ -14,9 +14,9 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-    - name: Lint with flake8
-      run: |
-        flake8 | lintly --log --context=flake8 --commit-sha=${{ github.event.pull_request.head.sha }} --use-checks
+#     - name: Lint with flake8
+#       run: |
+#         flake8 | lintly --log --context=flake8 --commit-sha=${{ github.event.pull_request.head.sha }} --use-checks
     - name: Lint with Black
       run: |
          black . --check 2>&1 >/dev/null | lintly --format=black --use-checks
