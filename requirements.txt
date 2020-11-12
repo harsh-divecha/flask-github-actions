@@ -17,3 +17,4 @@ gunicorn
 flake8
 black
 pylint
+lintly
