@@ -29,7 +29,7 @@ jobs:
         python-version: 3.7
     - name: Install dependencies
       run: |
-        pip install flake8 lintly
+        pip install flake8 lintly==0.5.0
     - name: Lint with flake8
       run: |
         flake8 | lintly --log --context=flake8 --commit-sha=${{ github.event.pull_request.head.sha }} --use-checks
