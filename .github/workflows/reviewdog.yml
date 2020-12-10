@@ -1,38 +1,38 @@
+on: [pull_request]
+name: PR check using Flake8
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: grantmcconnaughey/lintly-flake8-github-action@v1.0
+        with:
+          # The GitHub API token to create reviews with
+          token: ${{ secrets.GH_TOKEN }} --use-checks
+          # Fail if "new" violations detected or "any", default "new"
+          failIf: new
+          # Additional arguments to pass to flake8, default "." (current directory)
+          args: "--ignore=E121,E123 ."
+
+# name: Lint using Flake8
+
 # on: [pull_request]
 
 # jobs:
-#   lint:
+#   build:
 #     runs-on: ubuntu-latest
 #     steps:
-#       - uses: actions/checkout@v1
-#       - uses: grantmcconnaughey/lintly-flake8-github-action@v1.0
-#         with:
-#           # The GitHub API token to create reviews with
-#           token: ${{ secrets.GH_TOKEN }}
-#           # Fail if "new" violations detected or "any", default "new"
-#           failIf: new
-#           # Additional arguments to pass to flake8, default "." (current directory)
-#           args: "--ignore=E121,E123 ."
-
-name: Lint using Flake8
-
-on: [pull_request]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
-    - name: Install dependencies
-      run: |
-        pip install flake8 lintly==0.5.0
-        export LINTLY_API_KEY=${{ secrets.GH_TOKEN }}
-    - name: Lint with flake8
-      run: |
-        flake8 | lintly --log --context=flake8 --commit-sha=${{ github.event.pull_request.head.sha }} --api-key ${{ secrets.GH_TOKEN }} --use-checks
-#       env:
+#     - uses: actions/checkout@v2
+#     - name: Set up Python
+#       uses: actions/setup-python@v1
+#       with:
+#         python-version: 3.7
+#     - name: Install dependencies
+#       run: |
+#         pip install flake8 lintly==0.5.0
+#         export LINTLY_API_KEY=${{ secrets.GH_TOKEN }}
+#     - name: Lint with flake8
+#       run: |
+#         flake8 | lintly --log --context=flake8 --commit-sha=${{ github.event.pull_request.head.sha }} --api-key ${{ secrets.GH_TOKEN }} --use-checks
+# #       env:
 #         LINTLY_API_KEY: ${{ secrets.GH_TOKEN }}
