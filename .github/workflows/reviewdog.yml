@@ -1,13 +1,15 @@
-name: reviewdog
 on: [pull_request]
+
 jobs:
-  pyflakes:
-    name: runner / pyflakes
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: pyflakes
-        uses: reviewdog/action-pyflakes@master
+      - uses: actions/checkout@v1
+      - uses: grantmcconnaughey/lintly-flake8-github-action@v1.0
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          reporter: github-pr-check # Change reporter.
+          # The GitHub API token to create reviews with
+          token: ${{ secrets.GH_TOKEN }}
+          # Fail if "new" violations detected or "any", default "new"
+          failIf: new
+          # Additional arguments to pass to flake8, default "." (current directory)
+          args: "--ignore=E121,E123 ."
